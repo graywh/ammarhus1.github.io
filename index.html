@@ -244,10 +244,14 @@ var effective = daysnoAFK/weeksLeft;
 $("#results").empty();
 $("#results").append("<span>Current XP is "+levels[cur] + " and goal XP is "+levels[targ]+".</span><br/>");
 $("#results").append("<span>Level by end of season: "+levelAfter+ " (XP:"+finalXP+").</span><br/>");
+	if(expNeededToTarget>0){
 $("#results").append("<span>You still need "+expNeededToTarget+" XP to your target.</span><br/>");
-$("#results").append("<span>That is "+daysAFK+" days of creative AFK + daily punchcards (Most effective to play "+effectiveAFK+" days a week).</span><br/>")
-$("#results").append("<span>OR "+daysnoAFK+" days of only daily punchcards (Most effective to play "+effective+" days a week).</span><br/>")
-$("#results").append("<span>OR "+daysonlyAFK+" days of only creative AFK (Most effective to play "+effectiveonlyAFK+" days a week).</span><br/>")
+$("#results").append("<span>That is "+daysAFK+" days of creative AFK + daily punchcards (Most effective to play "+effectiveAFK+" days a week).</span><br/>");
+$("#results").append("<span>OR "+daysnoAFK+" days of only daily punchcards (Most effective to play "+effective+" days a week).</span><br/>");
+$("#results").append("<span>OR "+daysonlyAFK+" days of only creative AFK (Most effective to play "+effectiveonlyAFK+" days a week).</span><br/>");
+	} else {
+		$("#results").append("<span>You will reach your goal by the end of the season without additional play.</span>");
+	}
 
 $("#results").append("<br/><span><b>This calculator does not consider additional XP you recieve from regular play nor does it account for SUPERCHARGED XP.</b></span>")
 
