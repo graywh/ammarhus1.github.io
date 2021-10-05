@@ -1,0 +1,65 @@
+
+<html>
+  
+  
+  <body>
+<div>
+<fieldset>
+	<legend>Punchcard Checklist</legend>
+<div id="punchcards">
+<label>Click all punchcards you have currently completed.</label>
+<button type='button' id="checkall">Check All</button>
+<button type='button' id="uncheckall">Uncheck All</button>
+<br/>
+
+</div>
+	</fieldset>
+
+<form>
+	<fieldset>
+	<legend>Experience Calculator:</legend>
+	<table>
+	<tr>
+	<th style="width:150px;"></th>
+	<th></th>
+	</tr>
+	<tr>
+	<td><label for="current">Current Level:</label></td>
+	<td><input name="current" type="number" value=1 min=1 max=199 /></td>
+	</tr>
+	<tr>
+	<td><label for="target">Target Level:</label></td>
+	<td><input name="target" type="number" value=200 min=1 max=200 /></td>
+	</tr>
+	<tr>
+	<td><label for="newchars">Consider all future Character Punchcards?</label></td>
+	<td><input name="newchars" checked type="checkbox" /> <label>(There are supposed to be 39 total NPC punchcards in Season 8)</label></td>
+	</tr>
+	<tr>
+	<td><label for="newchars">Do weekly challenges?</label></td>
+	<td>
+	<input checked="checked" name="weekly" type="radio" value="3" /> Complete 3/3 weekly challenges <br /> 
+	<input name="weekly" type="radio" value="2" /> Complete 2/3 weekly challenges <br />  
+	<input name="weekly" type="radio" value="0" /> Complete 0/3 weekly challenges <br />  
+	</td>
+	</tr>
+	<tr>
+	<td><button type='button' id="calc">Calculate</button></td>
+	<td></td>
+	</tr>
+	</table>
+	
+	</fieldset>
+</form>
+
+	<fieldset>
+	<legend>Results</legend>
+	<div id="results">
+	
+	</div>
+
+	</fieldset>
+</div>
+  </body>
+  
+</html>
