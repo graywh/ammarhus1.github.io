@@ -1,7 +1,205 @@
 
 <html>
   
-  
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+  <style id="compiled-css" type="text/css">
+      /* The container */
+.punchcard {
+  display: block;
+	float:left;
+  position: relative;
+  margin: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 20px;
+  width: 120px;
+}
+
+/* Hide the browser's default checkbox */
+.punchcard input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f57542;
+	text-align: center;
+	padding:5px;
+	color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.punchcard:hover input ~ .checkmark {
+  background-color: #ffbfa3;
+}
+
+/* When the checkbox is checked, add a blue background */
+.punchcard input:checked ~ .checkmark {
+  background-color: #42f57e;
+	color:black;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.punchcard input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.punchcard .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+    /* EOS */
+  </style>
+
+  <script>
+	  function compDate(parm1,parm2) {     // pass values of START and END dates
+   var date1 = new Date(parm1);
+   var date2;
+   if (parm2 != '') { date2 = new Date(parm2); }
+               else { date2 = new Date(); }	// use today
+   return (date2-date1)/(1000*60*60*24*7).toFixed(2);
+}
+
+
+var totalCharacters = 39;
+var characters = [
+{name:"Baba Yaga",value:80000},
+{name:"Charlotte",value:80000},
+{name:"Dark Jonesy",value:80000},
+{name:"Dusk",value:80000},
+{name:"Fabio Sparklemane",value:80000},
+{name:"J.B. Chimpanski",value:80000},
+{name:"Kitbash",value:80000},
+{name:"Kor",value:80000},
+{name:"Madcap",value:80000},
+{name:"Penny",value:80000},
+{name:"Scuba Jonesy",value:80000},
+{name:"The Brat",value:80000},
+{name:"Toona Fish",value:80000},
+{name:"Torin",value:80000},
+{name:"Wrath",value:80000},
+{name:"Big Mouth",value:150000},
+{name:"Grim Fable",value:150000}
+];
+
+var levels = [0,40000,90000,140000,200000,260000,340000,420000,500000,580000,660000,740000,820000,900000,980000,1060000,1140000,1220000,1300000,1380000,1460000,1540000,1620000,1700000,1780000,1860000,1940000,2020000,2100000,2180000,2260000,2340000,2420000,2500000,2580000,2660000,2740000,2820000,2900000,2980000,3060000,3140000,3220000,3300000,3380000,3460000,3540000,3620000,3700000,3780000,3860000,3940000,4020000,4100000,4180000,4260000,4340000,4420000,4500000,4580000,4660000,4740000,4820000,4900000,4980000,5060000,5140000,5220000,5300000,5380000,5460000,5540000,5620000,5700000,5780000,5860000,5940000,6020000,6100000,6180000,6260000,6340000,6420000,6500000,6580000,6660000,6740000,6820000,6900000,6980000,7060000,7140000,7220000,7300000,7380000,7460000,7540000,7620000,7700000,7780000,7830000,7880250,7930750,7981250,8032000,8083000,8134250,8185750,8237500,8289500,8341500,8393750,8446250,8499000,8552000,8605250,8658750,8712250,8766000,8820000,8874250,8928750,8983500,9038500,9093750,9149250,9205000,9260750,9316750,9373000,9429500,9486250,9543250,9600500,9658000,9715750,9773750,9832000,9890500,9949250,10008250,10067500,10127000,10186750,10246750,10307000,10367500,10428250,10489250,10550500,10612000,10673750,10735750,10798000,10860500,10923250,10986250,11049500,11113000,11176750,11240750,11305000,11369500,11434250,11499250,11564500,11630000,11695750,11761750,11828000,11894750,11961750,12029000,12096500,12164250,12232250,12300500,12369000,12437750,12507000,12576500,12646250,12716250,12786500,12857000,12927750,12999000,13070500,13142250,13214250,13286500,13359250,13432250,13505500,13579000,13652750,13727000,13801500,13876250,13951250];
+
+//CREATE CHARS
+var count = 0;
+characters.forEach(function(item){
+$("#punchcards").append( "<label id='punchcard' class='punchcard'><input name='"+item.name+"' type='checkbox'><span class='checkmark'>"+item.name+"</span></label>" );
+count++;
+});
+
+$( "#checkall" ).click(function() {
+	$( "#punchcard > input" ).prop( "checked", true );
+});
+
+$( "#uncheckall" ).click(function() {
+	$( "#punchcard > input" ).prop( "checked", false );
+});
+
+//CALC CODE
+$( "#calc" ).click(function() {
+var cur = $("input[name='current']").val()-1;
+var targ = $("input[name='target']").val()-1;
+var newChar = $("input[name='newchars']").is(':checked');
+var finalXP = levels[cur];
+var levelAfter;
+
+//COUNT WEEKS
+var endofseason = moment("2021-12-05", "YYYY-MM-DD");
+var today = moment().startOf('day');
+var weeksLeft = Math.floor(moment.duration(endofseason.diff(today)).asWeeks());
+var weekly = $("input[name='weekly']:checked").val();
+
+//COUNT OLD PUNCHCARDS
+var oldPunchTotal = 0;
+characters.forEach(function(item){
+	var test = $("#punchcard > input[name='"+item.name+"']").is(':checked');
+	if(!test){
+		oldPunchTotal += item.value;
+	}
+});
+//Final XP Calculation
+finalXP += newChar ? (39 - characters.length) * 150000 : 0;
+finalXP += weeksLeft*weekly*50000;
+finalXP += oldPunchTotal;
+
+
+for(var i=0; i<levels.length; i++){
+        if(finalXP<levels[i] || i==199){
+				levelAfter = i;
+				break;
+				}
+}
+
+var expNeededToTarget = levels[targ] - finalXP;
+var daysAFK = Math.ceil(expNeededToTarget / 216000);
+var daysnoAFK = Math.ceil(expNeededToTarget / 90000);
+var daysonlyAFK = Math.ceil(expNeededToTarget / 126000);
+var effectiveAFK = daysAFK/weeksLeft;
+var effectiveonlyAFK = daysonlyAFK/weeksLeft;
+var effective = daysnoAFK/weeksLeft;
+$("#results").empty();
+$("#results").append("<span>Current XP is "+levels[cur] + " and goal XP is "+levels[targ]+".</span><br/>");
+$("#results").append("<span>Level by end of season: "+levelAfter+ " (XP:"+finalXP+").</span><br/>");
+$("#results").append("<span>You still need "+expNeededToTarget+" XP to your target.</span><br/>");
+$("#results").append("<span>That is "+daysAFK+" days of creative AFK + daily punchcards (Most effective to play "+effectiveAFK+" days a week).</span><br/>")
+$("#results").append("<span>OR "+daysnoAFK+" days of only daily punchcards (Most effective to play "+effective+" days a week).</span><br/>")
+$("#results").append("<span>OR "+daysonlyAFK+" days of only creative AFK (Most effective to play "+effectiveonlyAFK+" days a week).</span><br/>")
+
+$("#results").append("<br/><span><b>This calculator does not consider additional XP you recieve from regular play nor does it account for SUPERCHARGED XP.</b></span>")
+
+});
+
+
+
+
+
+	  </script>
+	</head>
   <body>
 <div>
 <fieldset>
